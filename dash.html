@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo</title>
+</head>
+<style>
+    #container{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+    }
+    #container div{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+    #container div p:nth-child(1)
+    {
+        color: brown;
+    }
+    nav ul{
+        list-style: none;
+        display: flex;
+        justify-content:space-around;
+    }
+    nav ul li a{
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        color: chocolate;
+        font-size: 30px;
+        text-decoration: none;
+        
+    }
+</style>
+<body>
+    <nav>
+        <ul>
+            <li><a href="./dash.html">Dashboard</a> </li>
+            <li><A href="./add.html">Add Order</A> </li>
+        </ul>
+    </nav>
+    <a>Show Product</a>
+    <div id="container" class="data">
+
+    </div>    
+</body>
+<script>
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+    let container=document.getElementById("container");
+    orders.forEach((el)=>{
+        let div=document.createElement("div");
+        let name=document.createElement("p");
+        name.innerText=el.name;
+        let type=document.createElement("p");
+        type.innerText=el.type;
+        let size=document.createElement("p");
+        size.innerText=el.size;
+        let qty=document.createElement("p");
+        qty.innerText=el.qty;
+        let price=document.createElement("p");
+        price.innerText=el.price;
+        div.append(name,type,size,qty,price);
+        container.append(div);
+    })
+
+</script>
+</html>
